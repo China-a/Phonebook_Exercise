@@ -1,8 +1,39 @@
 let express = require("express")
 let entries = express()
-let moment = require("moment-timezone")
+let moment = require("moment")
+let morgan = require("morgan");
 
 entries.use(express.json())
+
+// const requestLogger = (request, response, next) => {
+//     // console.log('Method:', request.method)
+//     // console.log('Path:  ', request.path)
+//     // console.log('Body:  ', request.body)
+//     // console.log('---')
+//     next()
+//   }
+//   entries.use(requestLogger)
+morgan.token('sameline', (request) => {
+    if (request.method == 'POST') return ' ' + JSON.stringify(request.body);
+    else return ' ';
+  });
+  entries.use(morgan(":method :url :status :res[content-length] - :response-time ms :sameline"))
+//   morgan('tiny')
+
+// morgan(function (tokens, req, res) {
+//     return [
+//     //   tokens.method(req, res),
+//       tokens.url(req, res),
+//       tokens.status(req, res),
+//       tokens.res(req, res, 'content-length'), '-',
+//       tokens['response-time'](req, res), 'ms'
+//     ].join(' ')
+//   })
+//
+// morgan.token ("sameline", function (req) {
+//     return JSON.stringify(req.body)
+//   })
+  
 
 let persons = 
 [
@@ -93,6 +124,12 @@ let person = {
     
       response.json(person);
     });
+
+// let unknownEndpoint = (request, response) => {
+//         response.status(404).send({ error: 'unknown endpoint' })
+//       }
+      
+// entries.use(unknownEndpoint)
 
 const PORT = 3001
 entries.listen(PORT)
