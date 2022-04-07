@@ -71,19 +71,19 @@ entries.get("/api/persons/:id", (request, response) => {
   };
   
  entries.post("/api/persons", (request, response) => {
-    let error = request.body;
+    let body = request.body;
   
-if (!error.body) {
-      return response.status(400).json({
-        error: "Must have name and phone number",
-      });
-    }
 let person = {
         name: body.name,
-        phone: body.important || false,
+        phone: body.phone,
         date: new Date(),
         id: generateId(),
       };
+    if (!body.name || !body.phone ) {
+        return response.status(400).json({
+          error: "Must have name and phone number",
+        });
+      }
     
       persons = persons.concat(person);
     
