@@ -1,0 +1,30 @@
+{
+  "name": "phonebook_exercise",
+  "version": "1.0.0",
+  "description": "Exercise for phonebook entries",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/China-a/Phonebook_Exercise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/China-a/Phonebook_Exercise/issues"
+  },
+  "homepage": "https://github.com/China-a/Phonebook_Exercise#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "jquery": "^3.6.0",
+    "moment": "^2.29.2",
+    "moment-timezone": "^0.5.34"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
