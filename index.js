@@ -81,9 +81,13 @@ let person = {
       };
     if (!body.name || !body.phone ) {
         return response.status(400).json({
-          error: "Must have name and phone number",
+          error: "Must have name or phone number",
         });
-      }
+      } if (body.name === body.name) {
+        return response.status(400).json({
+            error: "Name must be unique",
+      })
+    }
     
       persons = persons.concat(person);
     
